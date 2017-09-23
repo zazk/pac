@@ -7,9 +7,53 @@
   <li>Year: {{year}}</li>
   <li>Address: {{address.street}} {{address.city}} {{address.state}} </li>
   <li>Races: {{races}} </li>
-</ul> 
+</ul>  
+<button (click)="onClickOnRace()">Add Race</button>
+<h3>Edit Info</h3>
+
+<form  >
+    <div>
+      <label for="">Race</label>
+      <input type="text" [(ngModel)]="model" name="model" >
+    </div>
+    <div>
+      <label for="">Year</label>
+      <input type="number" [(ngModel)]="year" name="year" >
+    </div>
+    <div>
+      <label for="">Plate</label>
+      <input type="number" [(ngModel)]="plate" name="plate" >
+    </div>
+    <div>
+      <label for="">Street</label>
+      <input type="text" [(ngModel)]="address.street" name="street" >
+    </div>
+    <div>
+      <label for="">City</label>
+      <input type="text" [(ngModel)]="address.city" name="city" >
+    </div>
+    <div>
+      <label for="">State</label>
+      <input type="text" [(ngModel)]="address.state" name="state" >
+    </div>
+</form>
 
 <h3>Races</h3>
+<form (submit)="onSubmit(race.value)">
+  <div>
+    <label for="">Race</label>
+    <input type="text" #race >
+  </div>
+</form>
 <ul>
-  <li *ngFor="let race of races; let i = index">{{i + 1}} {{race}}</li>
+  <li *ngFor="let race of races; let i = index">
+    {{i + 1}} {{race}}
+    <button (click)="onDelete(race)">x</button>
+  </li>
 </ul>
+
+<h3>Posts</h3>
+<div *ngFor="let post of posts">
+  <h5>{{post.title}}</h5> 
+  <div>{{post.body}}</div>
+</div>

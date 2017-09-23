@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../services/data.service'
 
 @Component({
   selector: 'app-user',
@@ -13,25 +14,48 @@ export class UserComponent implements OnInit {
   address:Address;
   races:string[];
   google:any;
+  posts:Post[];
 
-  constructor() {
+  constructor( private dataService:DataService ) {
     console.log("Run Constructor User Component");
    }
 
   ngOnInit() {
-    this.model = "Ferrari Schumacher ngOnInit";
+    this.model = "Ferrari Schumacher runs as the greatest";
     this.plate = 203;
     this.address = {
       street:"5th Avenue",
       zip:132123,
-      state:"LA",
+      state:"MX",
       city:"Lima"
-    }
+    } 
     this.races = ["Malasya","Nurenberg","Imola","Suzuka","Monaco"];
     
-    
+    this.dataService.getPost().subscribe((posts) =>{
+      console.log(posts);
+      this.posts = posts;
+    })
 
     console.log("Run ngOnInit on User Component");
+  }
+
+  onClickOnRace(){
+    this.races.push("Indianapolis");
+  }
+
+  onSubmit(race){
+    console.log( "Race selected",race);
+    this.races.unshift(race);
+    return false;
+  }
+
+  onDelete(race){
+    for (var i = 0; i < this.races.length; i++) {
+      if(this.races[i] == race){
+        this.races.splice(i,1);
+      }
+      
+    }
   }
 
 }
@@ -41,4 +65,11 @@ interface Address{
   city:string,
   zip:number,
   state:string
+}
+
+interface Post {
+  body:string,
+  id:number,
+  title:string,
+  userId:1
 }
