@@ -10,34 +10,35 @@
 </ul>  
 <button (click)="onClickOnRace()">Add Race</button>
 <h3>Edit Info</h3>
-
-<form  >
-    <div>
-      <label for="">Race</label>
-      <input type="text" [(ngModel)]="model" name="model" >
-    </div>
-    <div>
-      <label for="">Year</label>
-      <input type="number" [(ngModel)]="year" name="year" >
-    </div>
-    <div>
-      <label for="">Plate</label>
-      <input type="number" [(ngModel)]="plate" name="plate" >
-    </div>
-    <div>
-      <label for="">Street</label>
-      <input type="text" [(ngModel)]="address.street" name="street" >
-    </div>
-    <div>
-      <label for="">City</label>
-      <input type="text" [(ngModel)]="address.city" name="city" >
-    </div>
-    <div>
-      <label for="">State</label>
-      <input type="text" [(ngModel)]="address.state" name="state" >
-    </div>
-</form>
-
+<button (click)="toggleEdit()">Edit Info</button> 
+<div *ngIf="isEdit">
+  <form>
+      <div>
+        <label for="">Race</label>
+        <input type="text" [(ngModel)]="model" name="model" >
+      </div>
+      <div>
+        <label for="">Year</label>
+        <input type="number" [(ngModel)]="year" name="year" >
+      </div>
+      <div>
+        <label for="">Plate</label>
+        <input type="number" [(ngModel)]="plate" name="plate" >
+      </div>
+      <div>
+        <label for="">Street</label>
+        <input type="text" [(ngModel)]="address.street" name="street" >
+      </div>
+      <div>
+        <label for="">City</label>
+        <input type="text" [(ngModel)]="address.city" name="city" >
+      </div>
+      <div>
+        <label for="">State</label>
+        <input type="text" [(ngModel)]="address.state" name="state" >
+      </div>
+  </form>
+</div>
 <h3>Races</h3>
 <form (submit)="onSubmit(race.value)">
   <div>

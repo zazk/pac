@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
   races:string[];
   google:any;
   posts:Post[];
+  isEdit:boolean = false;
 
   constructor( private dataService:DataService ) {
     console.log("Run Constructor User Component");
@@ -32,7 +33,7 @@ export class UserComponent implements OnInit {
     this.races = ["Malasya","Nurenberg","Imola","Suzuka","Monaco"];
     
     this.dataService.getPost().subscribe((posts) =>{
-      console.log(posts);
+      console.log("Getting Post Services ");
       this.posts = posts;
     })
 
@@ -41,6 +42,10 @@ export class UserComponent implements OnInit {
 
   onClickOnRace(){
     this.races.push("Indianapolis");
+  }
+
+  toggleEdit(){
+    this.isEdit = !this.isEdit;
   }
 
   onSubmit(race){
